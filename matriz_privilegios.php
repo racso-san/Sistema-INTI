@@ -70,65 +70,30 @@ if(!isset($_SESSION['usuario']) and $_SESSION['estado'] != 'Autenticado') {
                             <th>Alta del usuario</th>
                             <th>Rol</th>
                             <th>Estado</th>
-                            <th>Acciones</th>
+                            <th>Modificar</th>
+                            <th>Eliminar</th>
                         </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td>1</td>
-                        <td><a href="#"><img src="imagenes/user.png" class="avatar" alt="Avatar"> Michael Holz</a></td>
-                        <td>04/10/2013</td>                        
-                        <td>Admin</td>
-                        <td><span class="status text-success">&bull;</span> Activo</td>
-                        <td>
-                          <a href="#" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
-                          <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td><a href="#"><img src="imagenes/user.png" class="avatar" alt="Avatar"> Paula Wilson</a></td>
-                      <td>05/08/2014</td>                       
-                      <td>Asesor</td>
-                      <td><span class="status text-success">&bull;</span> Activo</td>
-                      <td>
-                        <a href="#" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
-                        <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td><a href="#"><img src="imagenes/user.png" class="avatar" alt="Avatar"> Antonio Moreno</a></td>
-                      <td>11/05/2015</td>
-                      <td>Asesor</td>
-                      <td><span class="status text-danger">&bull;</span> Suspendido</td>                        
-                      <td>
-                        <a href="#" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
-                        <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
-                      </td>                        
-                    </tr>
-                    <tr>
-                      <td>4</td>
-                      <td><a href="#"><img src="imagenes/user.png" class="avatar" alt="Avatar"> Mary Saveley</a></td>
-                      <td>06/09/2016</td>
-                      <td>Docente</td>
-                      <td><span class="status text-success">&bull;</span> Activo</td>
-                      <td>
-                        <a href="#" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
-                        <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>5</td>
-                      <td><a href="#"><img src="imagenes/user.png" class="avatar" alt="Avatar"> Martin Sommer</a></td>
-                      <td>12/08/2017</td>                        
-                      <td>Asistente</td>
-                      <td><span class="status text-warning">&bull;</span> Inactivo</td>
-                      <td>
-                        <a href="#" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
-                        <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
-                      </td>
-                    </tr>
+                    <?php
+                    $result = mysqli_query($enlace,$query_buscar_usuarios) or die($enlace->error);
+                    while ($row= $result->fetch_assoc()){ ;?>
+                       <tr>
+                          <td><?php echo $row['id_usuario'];?></td>
+                          <td><img src="imagenes/user.png" class="avatar" alt="Avatar"><?php echo $row['usuario'];?></td>
+                          <td><?php echo $row['fecha_alta'];?></td>
+                          <td> <?php if ($row['id_rol']==1){ echo $row['id_rol']='Administrador';} else { echo $row['id_rol']='Usuario';}?></td> 
+                          <?php    
+                          if ($row['visible']){ ?> 
+                             <td><span class="status text-success">&bull;</span> Activo </td>
+                             <?php } else {?>
+                             <td><span class="status text-danger">&bull;</span> Suspendido</td> 
+                             <?php }?>
+                             <td><a href="#" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a></td>
+                             <td><a href="vendor/php/borrado_logico.php?usuario= <?php echo $row['id_usuario'];?>" onclick= "return confirmation()" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a></td>
+                       </tr>
+                         <?php }?> 
                   </tbody>
                 </table>
                 <div class="clearfix">
@@ -171,6 +136,21 @@ if(!isset($_SESSION['usuario']) and $_SESSION['estado'] != 'Autenticado') {
 
   <!-- Scripts include-->
   <?php include 'vendor/php/includes/scripts.php'?>
+
+ <!--Script Confirmacion-->
+ <script type="text/javascript">
+          function confirmation() 
+          {
+              if(confirm("Desea seguir?"))
+        {
+          return true;
+        }
+        else
+        {
+          return false;
+        }
+          }
+</script>
 
 </body>
 

@@ -78,6 +78,8 @@ $query_buscar_capacitaciones= 'SELECT c.id_capacitacion, c.titulo_capacitacion, 
                                 INNER JOIN tipo_capacitaciones tc ON tc.id_tipo_capacitacion=c.id_tipo_capacitacion
                                 INNER JOIN proyectos p ON p.id_proyecto=c.id_proyecto WHERE c.visible=1';
 
+//Query para cargar usuarios (visibles) en select
+$query_buscar_usuarios= 'SELECT * FROM usuarios'; 
 
 /*function selectProvincias (){
     foreach ($enlace->query($query_provincias) as $row){
