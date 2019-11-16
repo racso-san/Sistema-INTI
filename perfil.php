@@ -65,7 +65,11 @@ if(!isset($_SESSION['usuario']) and $_SESSION['estado'] != 'Autenticado') {
                                 <div class="col-md-6">
                                     <div class="profile-head">
                                                 <h5>
-                                                    Administrador
+                                                <?php 
+                                                $result = mysqli_query($enlace,$query_buscar_usuarios) or die($enlace->error);
+                                                if ($row= $result->fetch_assoc()){ ;?>
+                                                <!-- Muestra el rol del usuario según su perfil -->
+                                                <p> <?php if ($row['id_rol']==1){ echo $row['id_rol']='Administrador';} else { echo $row['id_rol']='Usuario';}?></p> 
                                                 </h5>
                                                 <h6>
                                                     Nodo Pampa - Mar del plata
@@ -95,59 +99,60 @@ if(!isset($_SESSION['usuario']) and $_SESSION['estado'] != 'Autenticado') {
                                         <a href="">Modulos</a><br/>
                                         <a href="">I+D publicados</a><br/>
                                     </div>
-                                </div>
+                            </div>
                                 <div class="col-md-8">
                                     <div class="tab-content profile-tab" id="myTabContent">
                                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                                     <div class="row">
                                                         <div class="col-md-6">
-                                                            <label>Usuario</label>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <p>Admin</p>
-                                                        </div>
+                                                        <label>Usuario</label>
+                                                    </div>
+                                                       <div class="col-md-6">
+                                                        <p><?php echo $row['usuario'];?></p>
+                                                    </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-md-6">
-                                                            <label>Nombre completo</label>
-                                                        </div>
+                                                        <label>Nombre completo</label>
+                                                    </div>
                                                         <div class="col-md-6">
-                                                            <p>Gonzalo Chaves</p>
-                                                        </div>
+                                                        <p><?php echo $row['nombre'];?></p>
+                                                    </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-md-6">
-                                                            <label>Legajo</label>
-                                                        </div>
+                                                        <label>Legajo</label>
+                                                    </div>
                                                         <div class="col-md-6">
-                                                            <p>587426</p>
-                                                        </div>
+                                                        <p>587426</p>
+                                                    </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-md-6">
-                                                            <label>Email</label>
-                                                        </div>
+                                                        <label>Email</label>
+                                                    </div>
                                                         <div class="col-md-6">
-                                                            <p>gonzalochaves@gmail.com</p>
-                                                        </div>
+                                                        <p>gonzalochaves@gmail.com</p>
+                                                    </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-md-6">
-                                                            <label>Telefono</label>
-                                                        </div>
+                                                        <label>Telefono</label>
+                                                    </div>
                                                         <div class="col-md-6">
-                                                            <p>123 456 7890</p>
-                                                        </div>
+                                                        <p>123 456 7890</p>
+                                                    </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-md-6">
-                                                            <label>Profesión</label>
-                                                        </div>
+                                                        <label>Profesión</label>
+                                                    </div>
                                                         <div class="col-md-6">
-                                                            <p>Ingeniero Industrial</p>
-                                                        </div>
+                                                        <p>Ingeniero Industrial</p>
+                                                    </div>
                                                     </div>
                                                 </div>
+                             <?php }?> 
                                                 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                                     <div class="row">
                                                         <div class="col-md-6">
