@@ -83,7 +83,7 @@ if(!isset($_SESSION['usuario']) and $_SESSION['estado'] != 'Autenticado') {
                           <td><?php echo $row['id_usuario'];?></td>
                           <td><img src="imagenes/user.png" class="avatar" alt="Avatar"><?php echo $row['usuario'];?></td>
                           <td><?php echo $row['fecha_alta'];?></td>
-                          <td> <?php if ($row['id_rol']==1){ echo $row['id_rol']='Administrador';} else { echo $row['id_rol']='Usuario';}?></td> 
+                          <td><?php echo $row['rol'];?></td>
                           <?php    
                           if ($row['visible']){ ?> 
                              <td><span class="status text-success">&bull;</span> Activo </td>
