@@ -132,7 +132,7 @@ if(!isset($_SESSION['usuario']) and $_SESSION['estado'] != 'Autenticado') {
                   </tbody>
                 </table>
                 <div class="clearfix">
-                  <div class="hint-text">Mostrado <b>5</b> de <b>25</b> entradas</div>
+                 <!-- <div class="hint-text">Mostrado <b>5</b> de <b>25</b> entradas</div> -->
                   <ul class="pagination">
                       <li class="page-item disabled"><a href="#">Previo</a></li>
                       <li class="page-item"><a href="#" class="page-link">1</a></li>
